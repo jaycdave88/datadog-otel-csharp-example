@@ -20,8 +20,11 @@ jobs:
          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
         
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/datadog-otel-csharp-example:$(date +%s)
+    - name: Build the Docker image for ServiceA
+      run: docker build . --file src/JaegerOpenTelemetryDotnetExample/JaegerOpenTelemetryDotnetExample.ServiceA/Dockerfile --tag ${{secrets.DOCKER_USER}}/datadog-otel-csharp-example:$(date +%s)
+      
+    - name: Build the Docker image for ServiceB
+      run: docker build . --file src/JaegerOpenTelemetryDotnetExample/JaegerOpenTelemetryDotnetExample.ServiceB/Dockerfile --tag ${{secrets.DOCKER_USER}}/datadog-otel-csharp-example:$(date +%s)
        
     - name: Docker Push 
       run: docker push ${{secrets.DOCKER_USER}}/datadog-otel-csharp-example
