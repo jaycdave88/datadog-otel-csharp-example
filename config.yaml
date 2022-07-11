@@ -1,0 +1,22 @@
+receivers:
+  otlp:
+    protocols:
+      http: 
+
+exporters:
+  datadog:
+    env: otel
+    version: 1.0
+    tags: ["otel:true"]
+    api:
+      key: _API_KEY_HERE_
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [datadog]
+    metrics:
+      receivers: [otlp]
+      exporters: [datadog]
+
