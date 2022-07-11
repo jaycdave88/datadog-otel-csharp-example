@@ -30,5 +30,4 @@ or
 ```
 curl https://localhost:60001/ping 
 ```
-
 Navigate to https://app.datadoghq.com/apm/traces to visualize the trace telemetry.
