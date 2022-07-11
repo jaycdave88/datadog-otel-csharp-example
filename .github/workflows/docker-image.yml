@@ -25,6 +25,6 @@ jobs:
       
     - name: Build the Docker image for ServiceB
       run: docker build . --file src/JaegerOpenTelemetryDotnetExample/JaegerOpenTelemetryDotnetExample.ServiceB/Dockerfile --tag ${{secrets.DOCKER_USER}}/datadog-otel-csharp-example:$(date +%s)
-       
+     
     - name: Docker Push 
-      run: docker push ${{secrets.DOCKER_USER}}/datadog-otel-csharp-example
+      run: docker push ${{secrets.DOCKER_USER}}/datadog-otel-csharp-example:$(date +%s)
