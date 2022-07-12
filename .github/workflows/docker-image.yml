@@ -16,6 +16,12 @@ jobs:
     - uses: actions/checkout@v3
     - name: docker login
       run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
+      
+    - name: Build the Docker image for Datadog Collector Exporter 
+      run: docker build . --file datadog-opentelemetry-collector-exporter/Dockerfile --tag ${{secrets.DOCKER_USER}}/datadog-opentelemetry-collector-exporter:latest
+    
+    - name: Docker Push Datadog Collector Exporter 
+      run: docker push ${{secrets.DOCKER_USER}}/datadog-opentelemetry-collector-exporter:latest
         
     - name: Build the Docker image for ServiceA
       run: docker build . --file src/JaegerOpenTelemetryDotnetExample/JaegerOpenTelemetryDotnetExample.ServiceA/Dockerfile --tag ${{secrets.DOCKER_USER}}/datadog-otel-csharp-example-servicea:latest
