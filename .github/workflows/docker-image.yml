@@ -15,12 +15,16 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: docker login
-      env: 
-         DOCKER_USER: ${{secrets.DOCKER_USER}}
-         DOCKER_PASSWORD: ${{secretes.DOCKER_PASSWORD}}
-      run: 
-        docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-    - name: Build the Docker image
-        docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/datadog-otel-csharp-example:$(date +%s)
+      run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
+        
+    - name: Build the Docker image for ServiceA
+      run: docker build . --file src/JaegerOpenTelemetryDotnetExample/JaegerOpenTelemetryDotnetExample.ServiceA/Dockerfile --tag ${{secrets.DOCKER_USER}}/datadog-otel-csharp-example-servicea:latest
+    
     - name: Docker Push 
-      run: docker push ${{secrets.DOCKER_USER}}/datadog-otel-csharp-example
+      run: docker push ${{secrets.DOCKER_USER}}/datadog-otel-csharp-example-servicea:latest
+      
+    - name: Build the Docker image for ServiceB
+      run: docker build . --file src/JaegerOpenTelemetryDotnetExample/JaegerOpenTelemetryDotnetExample.ServiceB/Dockerfile --tag ${{secrets.DOCKER_USER}}/datadog-otel-csharp-example-serviceb:latest
+      
+    - name: Docker Push 
+      run: docker push ${{secrets.DOCKER_USER}}/datadog-otel-csharp-example-serviceb:latest
