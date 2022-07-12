@@ -1,5 +1,8 @@
 FROM otel/opentelemetry-collector-contrib:0.52.0
 
+ARG DD_API_KEY
+ENV DD_API_KEY=${DD_API_KEY}
+
 COPY datadog-opentelemetry-collector-exporter/config.yaml /etc/otel-collector-config.yml
 
 # pprof extension

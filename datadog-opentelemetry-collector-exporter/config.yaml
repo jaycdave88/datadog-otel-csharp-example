@@ -9,7 +9,7 @@ exporters:
     version: 1.0 # Optional 
     tags: ["otel:true"] # Optional 
     api:
-      key: _DD_API_KEY_HERE_
+      key: $DD_API_KEY
 
 service:
   pipelines:
