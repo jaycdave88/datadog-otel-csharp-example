@@ -1,8 +1,8 @@
 FROM mcr.microsoft.com/dotnet/aspnet:3.1 AS base
 WORKDIR /app
 
-EXPOSE 5001
-ENV ASPNETCORE_URLS=http://+:5001
+EXPOSE 443
+ENV ASPNETCORE_URLS=http://+:443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /build

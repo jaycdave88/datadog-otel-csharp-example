@@ -3,6 +3,8 @@ services:
 
   otel-collector:
     image: datadog-opentelemetry-collector-exporter
+    environment:
+      DD_API_KEY: API_KEY_HERE
     depends_on: 
       - aspcore-service-a
       - aspcore-service-b
@@ -10,7 +12,7 @@ services:
   aspcore-service-a:
     image: aspcore-service-a
     ports:
-      - "5001:5001"
+      - "443:443"
 
   aspcore-service-b:
     image: aspcore-service-b
