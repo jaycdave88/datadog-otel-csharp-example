@@ -2,13 +2,7 @@ version: "3"
 services:
 
   otel-collector:
-    image: otel/opentelemetry-collector-contrib:0.52.0 # https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/3702
-    command: ["--config=/etc/otel-collector-config.yml"]
-    volumes:
-      - ./config.yaml:/etc/otel-collector-config.yml:ro
-    ports:
-      # - "4317:4317" # OTLP gRPC receiver
-      - "4318:4318" # OTLP HTTP reciver 
+    image: datadog-opentelemetry-collector-exporter
     depends_on: 
       - aspcore-service-a
       - aspcore-service-b

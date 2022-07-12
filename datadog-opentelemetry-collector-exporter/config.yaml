@@ -5,11 +5,11 @@ receivers:
 
 exporters:
   datadog:
-    env: otel
-    version: 1.0
-    tags: ["otel:true"]
+    env: otel # Optional 
+    version: 1.0 # Optional 
+    tags: ["otel:true"] # Optional 
     api:
-      key: _API_KEY_HERE_
+      key: _DD_API_KEY_HERE_
 
 service:
   pipelines:
